@@ -148,6 +148,11 @@ void delPerson(AddressBook * abs) {
 
 void modifyPerson(AddressBook* abs) {
 	std::cout << "please input a person" << std::endl;
+	std::string name;
+	std::cin >> name;
+	int res = checkPerson(abs, name);
+
+
 
 }
 
