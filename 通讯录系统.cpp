@@ -116,7 +116,7 @@ int checkPerson(AddressBook* abs, std::string name) {
 			std::cout << "the person is at " << i + 1 << "row" << std::endl;
 			// 删除 记录操作
 			// 数据前移
-			
+
 			return i;
 		}
 	}
@@ -124,7 +124,7 @@ int checkPerson(AddressBook* abs, std::string name) {
 }
 
 // delPerson
-void delPerson(AddressBook * abs) {
+void delPerson(AddressBook* abs) {
 	std::cout << "please input the guy your want to delect" << std::endl;
 	std::string name;
 
@@ -148,7 +148,52 @@ void delPerson(AddressBook * abs) {
 
 void modifyPerson(AddressBook* abs) {
 	std::cout << "please input a person" << std::endl;
+	std::string name;
+	std::cin >> name;
+	int res = checkPerson(abs, name);
+	// find the person
+	if (res != -1)
+	{
+		// name
+		std::string name;
+		std::cout << "please input name" << std::endl;
+		std::cin >> name;
+		abs->personArr[res].m_Name = name;
 
+		// sexual
+		std::cout << "please input sexual " << std::endl;
+		std::cout << "1------male " << std::endl;
+		std::cout << "2----female" << std::endl;
+		int sex = 0;
+
+		while (true)
+		{
+			if (sex == 1 || sex == 2) {
+				abs->personArr[res].m_Sex = sex;
+				break;
+			}
+			std::cout << "wrong input" << std::endl;
+		}
+
+		//age
+		std::cout << "please input age " << std::endl;
+		int age = 0;
+		std::cin >> age;
+		abs->personArr[res].m_Age = age;
+
+	}
+	else
+	{
+		std::cout << "no people found" << std::endl;
+	}
+
+}
+// clean databse
+void cleanPerson(AddressBook* abs) {
+	abs->m_Size = 0;
+	std::cout << "now contact has been cleared" << std::endl;
+	system("pause");
+	system("cls");
 }
 
 // main 函数
@@ -178,12 +223,14 @@ int main()
 			delPerson(&abs);
 			system("pause");
 		}
-			break;
+		break;
 		case 4:
 			break;
 		case 5:
+			modifyPerson(&abs);
 			break;
 		case 6:
+			cleanPerson(&abs);
 			break;
 		case 0:
 			std::cout << "welcome to use next time our system" << std::endl;
